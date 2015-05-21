@@ -26,4 +26,33 @@
       (dec-factorial (dec n) (* n so-far)))))
 
 ;;Ex 3
+(def recursive-sum
+  (fn [l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-sum (rest l) (+ so-far (first l))))))
+
+(prn (recursive-sum [1 2 3 4] 0))
+
+;;Ex 4
+;;Первый вариант
+(def recursive-product
+  (fn [l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-product (rest l) (* so-far (first l))))))
+
+(prn (recursive-product [1 2 3 4] 1))
+
+;;После вынесения общей части
+(def recursive-operation
+  (fn [op l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-operation op (rest l) (apply op (list so-far (first l)))))))
+
+(prn (recursive-operation + [1 2 3 4] 0))
+(prn (recursive-operation * [1 2 3 4] 1))
+
+;;Ex 5
 

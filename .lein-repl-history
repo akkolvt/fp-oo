@@ -1,0 +1,60 @@
+(empty? [])
+(drop 1 [1 2 3 4])
+(rest [1 2 3 4])
+(first [1 2 3 4])
+(def recursive-sum
+  (fn [l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-sum (rest l) (+ so-far (first l))))))
+(prn (recursive-sum [1 2 3 4] 0))
+(prn (recursive-sum [1 2 3 4 5] 0))
+(prn (recursive-sum [1 2 3 4 5] 1))
+(def recursive-product
+  (fn [l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-product (rest l) (* so-far (first l))))))
+(prn (recursive-product [1 2 3 4] 1))
+(prn (recursive-product [1 2 3 4 5] 1))
+(def recursive-operation
+  (fn [opl so-far]
+    (if (empty? l)
+      so-far
+      (recursive-operation (rest l) (apply op so-far (first l))))))
+(prn (recursive-operation [1 2 3 4] 0))
+(prn (recursive-operation [1 2 3 4] 1))
+(def recursive-operation
+  (fn [op l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-operation (rest l) (apply op so-far (first l))))))
+(prn (recursive-operation [1 2 3 4] 0))
+(prn (recursive-operation [1 2 3 4] 1))
+(def recursive-operation
+  (fn [op l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-operation (rest l) (apply op so-far (first l))))))
+(prn (recursive-operation + [1 2 3 4] 0))
+(prn (recursive-operation * [1 2 3 4] 1))
+(partial (apply * 1 2))
+(apply * 1 2)
+(def recursive-operation
+  (fn [op l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-operation (rest l) (apply op (list so-far (first l)))))))
+(prn (recursive-operation + [1 2 3 4] 0))
+(prn (recursive-operation * [1 2 3 4] 1))
+(def recursive-operation
+  (fn [op l so-far]
+    (if (empty? l)
+      so-far
+      (recursive-operation op (rest l) (apply op (list so-far (first l)))))))
+(prn (recursive-operation + [1 2 3 4] 0))
+(prn (recursive-operation * [1 2 3 4] 1))
+(prn (recursive-operation + [1 2 3 4 5] 0))
+(prn (recursive-operation * [1 2 3 4 5] 0))
+(prn (recursive-operation * [1 2 3 4 5] 1))
+exit
