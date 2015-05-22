@@ -58,3 +58,30 @@
 (prn (recursive-operation * [1 2 3 4 5] 0))
 (prn (recursive-operation * [1 2 3 4 5] 1))
 exit
+(assoc :a 0)
+(assoc :a 0 so-far)
+(assoc :a 0 {})
+(assoc {} 0)
+(assoc {} :a 0)
+(recursive-function (fn [el so-far] (assoc so-far el 0))
+                      [:a :b :c]
+                      {})
+(def recursive-function
+     (fn [combiner something so-far]
+       (if (empty? something)
+         so-far
+         (recursive-function combiner
+                             (rest something)
+                             (combiner (first something)
+                                       so-far)))))
+(recursive-function (fn [el so-far] (assoc so-far el 0))
+                      [:a :b :c]
+                      {})
+(count {})
+(recursive-function (fn [el so-far] (assoc so-far el (count so-far)))
+                    [:a :b :c]
+                    {})
+(reverse (recursive-function (fn [el so-far] (assoc so-far el (count so-far)))
+                    [:a :b :c]
+                    {}))
+exit

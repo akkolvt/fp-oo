@@ -55,4 +55,22 @@
 (prn (recursive-operation * [1 2 3 4] 1))
 
 ;;Ex 5
+; (recursive-function **combiner**
+;     [:a :b :c]
+;     **starting-so-far**)
+(def recursive-function
+     (fn [combiner something so-far]
+       (if (empty? something)
+         so-far
+         (recursive-function combiner
+                             (rest something)
+                             (combiner (first something)
+                                       so-far)))))
 
+(recursive-function (fn [el so-far] (assoc so-far el 0))
+                    [:a :b :c]
+                    {})
+
+(recursive-function (fn [el so-far] (assoc so-far el (count so-far)))
+                    [:a :b :c]
+                    {})
